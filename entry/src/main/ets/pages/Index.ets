@@ -1,22 +1,31 @@
-import { logger } from '../commons/utils';
+import { logger, statusBar } from '../commons/utils';
 logger.info('IndexPage', '这是首页的日志')
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
+  @StorageProp('topHeight') topHeight: number = 0
+  @StorageProp('bottomHeight') bottomHeight: number = 0
 
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
+    Column() {
+      Text('top')
+      Row() {
+        Button('Light')
+          .onClick(() => {
+            statusBar.setLightBar()
+
+          })
+        Button('Dark')
+          .onClick(() => {
+            statusBar.setDarkBar()
+          })
+      }
+      Blank()
+      Text('bottom11')
     }
-    .height('100%')
     .width('100%')
+    .height('100%')
+    .backgroundColor('red')
+    .padding({ top: this.topHeight, bottom: this.bottomHeight })
   }
 }
