@@ -16,3 +16,25 @@ export interface QuestionItem {
   /* 是否已看 */
   readFlag: 0 | 1;
 }
+export interface PageData<T> {
+  total: number
+  pageTotal: number
+  rows: T[]
+}
+
+export enum SortType {
+  Default = 0,
+  DifficultyLow = 10,
+  DifficultyHigh = 11,
+  ViewLow = 20,
+  ViewHigh = 21,
+  Commend = 30
+}
+
+export interface QuestionListParams {
+  type: number
+  questionBankType: 9 | 10
+  sort?: SortType
+  page?: number
+  pageSize?: number
+}
