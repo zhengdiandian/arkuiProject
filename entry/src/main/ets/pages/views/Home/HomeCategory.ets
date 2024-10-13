@@ -1,6 +1,8 @@
 import { QuestionItemComp } from '../../../commons/components/QuestionItemComp'
 import { QuestionListComp } from '../../../commons/components/QuestionListComp'
+import { getQuestionTypeList } from '../../../commons/request/home'
 import { QuestionType } from '../../../models'
+import { hilog } from '@kit.PerformanceAnalysisKit'
 
 const mockData: QuestionType[] = [
   { id: 1, name: 'ArkTS', displayNewestFlag: 0 },
@@ -41,12 +43,16 @@ export struct HomeCategory{
    }
    .padding({left: 16, right: this.questionTypeList.length ===index+1? 16: 0})
   }
+  async  aboutToAppear() {
+    const res =  await getQuestionTypeList()
+    this.questionTypeList = res
+  }
   build() {
       Tabs(){
         ForEach(this.questionTypeList, (item: QuestionType, i: number) => {
           TabContent(){
             // TODO 试题列表
-            QuestionListComp()
+            QuestionListComp({typeId: item.id})
             // QuestionItemComp({
             //   item: {
             //     id: '100',

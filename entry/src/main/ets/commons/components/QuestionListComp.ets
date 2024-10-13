@@ -1,40 +1,50 @@
-import { QuestionItem } from '../../models'
+import { PageData, QuestionItem, QuestionListParams, SortType  } from '../../models'
+import { getQuestionList } from '../request/home'
+import { http } from '../utils/request'
 import { QuestionItemComp } from './QuestionItemComp'
+import { promptAction } from '@kit.ArkUI'
 
 @Component
 export struct QuestionListComp {
-  @State list: QuestionItem[] = new Array(10).fill(0).map((item: number, i: number) => {
-    return {
-      id: '100'+ i,
-      stem: '000请说下ArkUI的容器组件有哪些？',
-      difficulty: 3,
-      likeCount: 23,
-      views: 423,
-      readFlag: 1
-    } as QuestionItem
-  })
+  @State list: QuestionItem[] = []
+  @Prop typeId:number
+  @Prop sort:SortType = SortType.Default
+  @State page:number =  1
   // 控制刷新的状态
   @State isRefreshing: boolean = false
   // 是否加载完成
   @State isFinished: boolean = false
   // 正在加载中...
   @State isLoading: boolean = false
-  onRefresh() {
-    setTimeout(() => {
-      this.list = []
-      for (let i = 0; i < 10; i++) {
-        this.list.push( {
-          id: '100',
-          stem: '1111请说下ArkUI的容器组件有哪些？',
-          difficulty: 3,
-          likeCount: 23,
-          views: 423,
-          readFlag: 1
-        } as QuestionItem)
+  // getQuestionList(): Promise<PageData<QuestionItem>> {
+  //   return http.request({
+  //
+  //   })
+  //
+  // }
+  async  onRefresh() {
+    this.page = 1
+    const res = await getQuestionList(
+      {
+        url: 'question/list',
+        params: {
+          type: this.typeId,
+          questionBankType: 10,
+          sort: this.sort,
+          page: this.page,
+          pageSize: 10
+        } as QuestionListParams
       }
-      this.isRefreshing = false
+    )
+    this.list = res.rows
+    this.isRefreshing = false
+    if (this.page >= res.pageTotal) {
+      this.isFinished = true
+    } else {
       this.isFinished = false
-    }, 1000)
+      this.page++
+    }
+    promptAction.showToast({ message: '更新成功' })
   }
 
 
@@ -62,24 +72,24 @@ export struct QuestionListComp {
       }
     }
   }
-  onLoad(){
-    setTimeout(() => {
-      for (let index = 0; index < 10; index++) {
-        this.list.push({
-          id: '100',
-          stem: '2222请说下ArkUI的容器组件有哪些？',
-          difficulty: 3,
-          likeCount: 23,
-          views: 423,
-          readFlag: 1
-        } as QuestionItem)
-
-      }
-      this.isLoading = false
-      if(this.list.length>= 40){
-        this.isFinished = true
-      }
+  async  onLoad(){
+    const  res = await getQuestionList({
+      url: 'question/list',
+      params: {
+        type: this.typeId,
+        questionBankType: 10,
+        sort: this.sort,
+        page: this.page,
+        pageSize: 10
+      } as QuestionListParams
     })
+    this.list.push( ...res.rows)
+    this.isLoading = false
+    if(this.page>= res.pageTotal){
+      this.isFinished = true
+    }else {
+      this.page++
+    }
   }
   build() {
     Refresh({refreshing: $$this.isRefreshing}){
