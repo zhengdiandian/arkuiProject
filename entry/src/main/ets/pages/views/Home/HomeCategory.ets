@@ -1,6 +1,6 @@
 import { QuestionItemComp } from '../../../commons/components/QuestionItemComp'
 import { QuestionListComp } from '../../../commons/components/QuestionListComp'
-import { FilterButton } from '../../../commons/components/index'
+import { FilterButton, HcSkeleton, HcSkeletonItem } from '../../../commons/components/index'
 import { getQuestionTypeList } from '../../../commons/request/home'
 import { QuestionType, SortType } from '../../../models'
 import { hilog } from '@kit.PerformanceAnalysisKit'
@@ -32,6 +32,7 @@ export struct HomeCategory{
   @State filterDataIndex: number = 0
   @State filterDataSort: SortType = SortType.Default
   @State sort: SortType = SortType.Default
+  @State isLoading : boolean = false
   @Builder
   FilterSheetBuilder(){
     Column(){
@@ -155,11 +156,43 @@ export struct HomeCategory{
    }
    .padding({left: 16, right: this.questionTypeList.length ===index+1? 16: 0})
   }
+  @Builder
+  SkeletonBuilder() {
+    HcSkeleton() {
+      Column() {
+        Row({ space: 16 }) {
+          HcSkeletonItem({ widthValue: 60 })
+          HcSkeletonItem({ widthValue: 100 })
+          HcSkeletonItem({ widthValue: 80 })
+          HcSkeletonItem({ widthValue: 40 })
+        }
+        .height(44)
+        .width('100%')
+
+        ForEach([1, 2, 3, 4, 5, 6], () => {
+          Column({ space: 10 }) {
+            HcSkeletonItem({ widthValue: '90%' })
+            HcSkeletonItem({ widthValue: '45%' })
+          }
+          .height(80)
+          .width('100%')
+          .alignItems(HorizontalAlign.Start)
+          .justifyContent(FlexAlign.Center)
+        })
+      }
+      .padding({ left: 16, right: 16 })
+    }
+  }
   async  aboutToAppear() {
+    this.isLoading = true
     const res =  await getQuestionTypeList()
     this.questionTypeList = res
+    this.isLoading = false
   }
   build() {
+    if(this.isLoading){
+      this.SkeletonBuilder()
+    }else {
       Stack({alignContent: Alignment.TopEnd}){
         // 和 Tabs 同级，外面 Stack 组件，左上角对齐 Stack({ alignContent: Alignment.TopEnd }) {}
 
@@ -207,6 +240,8 @@ export struct HomeCategory{
 
         })
       }
+
+    }
 
   }
 }
