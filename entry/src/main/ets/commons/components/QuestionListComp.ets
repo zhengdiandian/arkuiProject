@@ -7,8 +7,11 @@ import { promptAction } from '@kit.ArkUI'
 @Component
 export struct QuestionListComp {
   @State list: QuestionItem[] = []
-  @Prop typeId:number
-  @Prop sort:SortType = SortType.Default
+  @Prop    typeId:number
+  @Prop  @Watch('onChangeSort')  sort:SortType = SortType.Default
+  @Prop  activeIndex:number
+  @Prop index:number
+
   @State page:number =  1
   // 控制刷新的状态
   @State isRefreshing: boolean = false
@@ -22,6 +25,17 @@ export struct QuestionListComp {
   //   })
   //
   // }
+  onChangeSort() {
+    // 切换分类的时候，需要等待UI显示后去刷新
+    this.onRefresh()
+
+
+    setTimeout(() => {
+      if (this.activeIndex === this.index) {
+        this.isRefreshing = true
+      }
+    })
+  }
   async  onRefresh() {
     this.page = 1
     const res = await getQuestionList(
