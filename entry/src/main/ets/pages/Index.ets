@@ -34,7 +34,7 @@ const tabList: TabBarModel[] = [
 struct Index {
   @StorageProp('topHeight') topHeight: number = 0
   @StorageProp('bottomHeight') bottomHeight: number = 0
-  @State activeIndex: number= 0
+  @State activeIndex: number= 3
   @Builder
   TabBarBuilder(item: TabBarModel, index: number){
       Column({space: 5}){
