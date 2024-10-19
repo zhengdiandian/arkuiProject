@@ -1,4 +1,5 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from '@ohos/axios'
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from '@ohos/axios'
+import { auth } from './Auth'
 import { logger } from './Logger'
 
 export const baseURL = 'https://api-harmony-teach.itheima.net/hm/'
@@ -18,6 +19,16 @@ instance.interceptors.response.use((res: AxiosResponse) => {
   return Promise.reject(res.data)
 }, (err: AxiosError) => {
   logger.error('Req Error', JSON.stringify(err))
+  return Promise.reject(err)
+})
+// 请求拦截器
+instance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+  const user = auth.getUser()
+  if (user.token) {
+    config.headers.Authorization = `Bearer ${user.token}`
+  }
+  return config
+}, (err: AxiosError) => {
   return Promise.reject(err)
 })
 

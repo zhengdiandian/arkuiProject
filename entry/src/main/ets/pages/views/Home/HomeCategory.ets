@@ -5,6 +5,8 @@ import { getQuestionTypeList } from '../../../commons/request/home'
 import { QuestionType, SortType } from '../../../models'
 import { hilog } from '@kit.PerformanceAnalysisKit'
 import { logger } from '../../../commons/utils/Logger'
+import { emitter } from '@kit.BasicServicesKit'
+import { LOGIN_EVENT } from '../../../constants'
 
 @Extend(Text)
 function textTitle() {
@@ -183,11 +185,16 @@ export struct HomeCategory{
       .padding({ left: 16, right: 16 })
     }
   }
+   async  getData() {
+     this.isLoading = true
+     const res =  await getQuestionTypeList()
+     this.questionTypeList = res
+     this.isLoading = false
+   }
   async  aboutToAppear() {
-    this.isLoading = true
-    const res =  await getQuestionTypeList()
-    this.questionTypeList = res
-    this.isLoading = false
+    this.getData()
+    emitter.on(LOGIN_EVENT, this.getData)
+
   }
   build() {
     if(this.isLoading){
