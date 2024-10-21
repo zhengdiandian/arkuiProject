@@ -16,7 +16,6 @@ function customStyle(){
     .border({ width: { bottom: 0.5 }, color: $r('app.color.common_gray_border') })
 }
 
-function ss(){}
 
 @Entry
 @Component
@@ -61,9 +60,9 @@ struct LoginPage {
       } else {
         router.back()
       }
-    } catch ({message }) {
+    } catch (e) {
       this.loading = false
-      promptAction.showToast({ message })
+      promptAction.showToast({ message: e.message })
     }
   }
   build() {

@@ -27,12 +27,12 @@ class Auth {
     } else {
       // 未登录，拦截到登录页
       if (typeof options === 'function') {
-        router.pushUrl({ url: 'pages/LoginPage' })
+        router.pushUrl({ url: 'pages/Login' })
       } else {
         // 带上 return_url 用户登录回跳
         const params = options.params as Record<string, string> || {}
         params.return_url = options.url
-        router.pushUrl({ url: 'pages/LoginPage', params })
+        router.pushUrl({ url: 'pages/Login', params })
       }
     }
   }

@@ -2,7 +2,6 @@ import { HcTag } from '.'
 import { QuestionItem } from '../../models'
 
 
-@Preview
 @Component
 export  struct QuestionItemComp  {
   @Prop item: QuestionItem  = {}  as  QuestionItem
