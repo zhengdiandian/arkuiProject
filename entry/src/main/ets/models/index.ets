@@ -67,5 +67,13 @@ export interface QuestionDetail extends QuestionItem {
 
 export interface QuestionPageParams {
 
+  list: QuestionItem[]
   item: QuestionItem
+}
+export interface QuestionOptParams {
+  id: string
+  /* 0 试题  2 面经 */
+  type: 0 | 1
+  /* 1 点赞  2 收藏 */
+  optType: 1 | 2
 }
