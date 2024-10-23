@@ -5,6 +5,7 @@ import { promptAction, router } from '@kit.ArkUI'
 import {http} from '../commons/utils/index'
 import { webview } from '@kit.ArkWeb'
 import { HcLoadingDialog } from '../commons/components/HcLoadingDialog'
+import { QuestionShareDialog } from './views/Question/QuestionShareDialog'
 
 @Entry
 @Component
@@ -15,9 +16,16 @@ import { HcLoadingDialog } from '../commons/components/HcLoadingDialog'
     customStyle: true,
     alignment: DialogAlignment.Center
   })
+
   @State item: QuestionDetail = {} as QuestionDetail
   @State list: QuestionDetail[] = []
   @State questionIndex: number = 0
+  codeDialog = new CustomDialogController({
+    builder: QuestionShareDialog({ item: this.item }),
+    customStyle: true,
+    alignment: DialogAlignment.Center
+
+  })
   @Builder
   TitleBuilder(title: string) {
     Row(){
@@ -41,11 +49,15 @@ import { HcLoadingDialog } from '../commons/components/HcLoadingDialog'
       MenuItem({ content: this.item.collectFlag === 1 ? '取消收藏' : '收藏' })
         .onClick(() => this.questionOpt(2, this.item.collectFlag === 1 ? 0 : 1))
       MenuItem({ content: '点我反馈' })
-      MenuItem({ content: '试题分享' })
+      MenuItem({ content: '试题分享' }).onClick(() => {
+        this.codeDialog.open()
+
+      })
     }
     .width(108)
   }
   async aboutToAppear() {
+
     const params = router.getParams() as QuestionPageParams
     if (params) {
       this.item = params.item as QuestionDetail
@@ -151,6 +163,7 @@ import { HcLoadingDialog } from '../commons/components/HcLoadingDialog'
             this.webController.runJavaScript(`writeHtml(\`${this.item.answer}\`)`)
           }
         })
+        .width('100%')
 
       Row({space: 80}){
         Row(){
