@@ -15,7 +15,11 @@
     {
       "name": "app_name",
       "value": "面试通"
-    }
+    },
 
+    {
+      "name": "permission_reason_camera",
+      "value": "用于拍照扫码"
+    }
   ]
 }

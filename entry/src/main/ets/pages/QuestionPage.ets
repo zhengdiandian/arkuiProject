@@ -7,7 +7,7 @@ import { webview } from '@kit.ArkWeb'
 import { HcLoadingDialog } from '../commons/components/HcLoadingDialog'
 import { QuestionShareDialog } from './views/Question/QuestionShareDialog'
 
-@Entry
+@Entry({routeName: 'QuestionPage'})
 @Component
   struct  QuestionPage {
   webController :WebviewController = new webview.WebviewController();

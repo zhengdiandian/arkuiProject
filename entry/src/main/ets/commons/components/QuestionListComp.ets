@@ -12,7 +12,7 @@ export struct QuestionListComp {
   @Prop  @Watch('onChangeSort')  sort:SortType = SortType.Default
   @Prop  activeIndex:number
   @Prop index:number
-
+  @Prop keyword: string = ''
   @State page:number =  1
   // 控制刷新的状态
   @State isRefreshing: boolean = false
@@ -47,7 +47,8 @@ export struct QuestionListComp {
           questionBankType: 10,
           sort: this.sort,
           page: this.page,
-          pageSize: 10
+          pageSize: 10,
+          keyword: this.keyword,
         } as QuestionListParams
       }
     )

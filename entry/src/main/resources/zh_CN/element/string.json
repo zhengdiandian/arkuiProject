@@ -12,6 +12,10 @@
     {
       "name": "EntryAbility_label",
       "value": "郑志鹏的学习"
+    },
+    {
+      "name": "permission_reason_camera",
+      "value": "用于拍照扫码"
     }
   ]
 }
