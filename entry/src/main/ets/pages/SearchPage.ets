@@ -1,5 +1,6 @@
 import { router } from '@kit.ArkUI'
 import { QuestionListComp } from '../commons/components/QuestionListComp'
+import { history } from '../commons/utils/History'
 import { SearchHistory } from './views/SearchHistory'
 
 @Entry({routeName: "SearchPage"})
@@ -19,6 +20,8 @@ struct SearchPage {
           .defaultFocus(true)
           .onSubmit(value => {
             this.keyword = value
+            history.setItem(this.keyword)
+
             if (this.keyword) {
               this.isSearch = true
             }
@@ -47,6 +50,8 @@ struct SearchPage {
         }else {
           SearchHistory({
             onSearch: keyword => {
+              this.keyword = keyword
+              this.isSearch = true
               // TODO 进行搜索
             }
           })

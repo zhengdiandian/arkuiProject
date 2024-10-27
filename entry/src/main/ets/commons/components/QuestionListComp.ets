@@ -4,6 +4,7 @@ import { http } from '../utils/request'
 import { QuestionItemComp } from './QuestionItemComp'
 import { promptAction } from '@kit.ArkUI'
 import { auth } from '../utils/Auth'
+import { logger } from '../utils/Logger'
 
 @Component
 export struct QuestionListComp {
@@ -89,6 +90,14 @@ export struct QuestionListComp {
     }
   }
   async  onLoad(){
+    logger.info('fdsfds')
+    logger.info(JSON.stringify({
+      type: this.typeId,
+      questionBankType: 10,
+      sort: this.sort,
+      page: this.page,
+      pageSize: 10
+    }))
     const  res = await getQuestionList({
       url: 'question/list',
       params: {
@@ -99,6 +108,7 @@ export struct QuestionListComp {
         pageSize: 10
       } as QuestionListParams
     })
+
     this.list.push( ...res.rows)
     this.isLoading = false
     if(this.page>= res.pageTotal){

@@ -1,3 +1,5 @@
+import { history } from '../../commons/utils/History'
+
 interface BtnItem {
   text: string
   onClick?: () => void
@@ -11,7 +13,7 @@ export struct SearchHistory {
   }
 
   aboutToAppear(): void {
-    this.keywords = ['HarmonyOS', 'ArkUI', '大厂', 'Component', 'ArkTS']
+    this.keywords = history.getAll()
   }
 
   build() {
@@ -27,6 +29,8 @@ export struct SearchHistory {
             Span('全部删除')
               .onClick(() => {
                 // TODO 删除全部
+                history.clear()
+                this.keywords = history.getAll()
               })
             Span(' | ')
             Span('完成')
@@ -59,6 +63,8 @@ export struct SearchHistory {
               .aspectRatio(1)
               .fillColor('#878787')
               .onClick(() => {
+                history.delItem(keyword)
+                this.keywords = history.getAll()
                 // TODO 删除单个
               })
           }

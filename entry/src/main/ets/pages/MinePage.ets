@@ -2,6 +2,7 @@ import { HcClockIn } from '../commons/components'
 import { router } from '@kit.ArkUI'
 import { formatTime, statusBar } from '../commons/utils'
 import { User } from '../models'
+import { UserStoreKey } from '../commons/utils/Auth'
 
 interface Nav {
   icon: ResourceStr
@@ -20,7 +21,7 @@ interface Tool {
 @Component
 export struct MinePage {
   @StorageProp('topHeight') topHeight: number = 0
-  @StorageProp('user') user: User = {} as User
+  @StorageProp(UserStoreKey) user: User = {} as User
   @Builder
   navBuilder(nav: Nav) {
     GridCol(){
@@ -114,7 +115,7 @@ export struct MinePage {
             .textOverflow({ overflow: TextOverflow.Ellipsis })
             .layoutWeight(1)
             .onClick(() => {
-              router.pushUrl({ url: 'pages/LoginPage' })
+              router.pushUrl({ url: 'pages/Login' })
             })
         }
 
