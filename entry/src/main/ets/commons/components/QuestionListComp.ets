@@ -98,24 +98,30 @@ export struct QuestionListComp {
       page: this.page,
       pageSize: 10
     }))
-    const  res = await getQuestionList({
-      url: 'question/list',
-      params: {
-        type: this.typeId,
-        questionBankType: 10,
-        sort: this.sort,
-        page: this.page,
-        pageSize: 10
-      } as QuestionListParams
-    })
+    try {
+      const  res = await getQuestionList({
+        url: 'question/list',
+        params: {
+          type: this.typeId,
+          questionBankType: 10,
+          sort: this.sort,
+          page: this.page,
+          pageSize: 10
+        } as QuestionListParams
+      })
 
-    this.list.push( ...res.rows)
-    this.isLoading = false
-    if(this.page>= res.pageTotal){
-      this.isFinished = true
-    }else {
-      this.page++
+      this.list.push( ...res.rows)
+      this.isLoading = false
+      if(this.page>= res.pageTotal){
+        this.isFinished = true
+      }else {
+        this.page++
+      }
+    } catch (e) {
+      logger.error(e)
     }
+
+
   }
   build() {
     Refresh({refreshing: $$this.isRefreshing}){

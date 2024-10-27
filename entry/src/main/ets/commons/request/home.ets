@@ -8,6 +8,7 @@ export const   getQuestionTypeList =  async  () =>  {
 }
 
 export  const getQuestionList = (params:AxiosRequestConfig<RequestData>): Promise<PageData<QuestionItem>>  =>{
+
   return http.request(params )
 
 }

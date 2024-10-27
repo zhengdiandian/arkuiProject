@@ -1,14 +1,15 @@
 import { HcClockIn, HcSearchBox } from '../commons/components'
 import { HomeCategory } from './views/Home/HomeCategory'
 import { scanBarcode } from '@kit.ScanKit'
-import { QuestionDetail } from '../models'
+import { QuestionDetail, User } from '../models'
 import { http, logger } from '../commons/utils/index'
 import { router } from '@kit.ArkUI'
-import { auth } from '../commons/utils/Auth'
+import { auth, UserStoreKey } from '../commons/utils/Auth'
 
 @Component
 export struct HomePage {
   @StorageProp('topHeight') topHeight: number =0
+  @StorageProp(UserStoreKey) user: User = {} as User
   async scanQuestionCode() {
     if (canIUse('SystemCapability.Multimedia.Scan.ScanBarcode')) {
       logger.info('扫码'+canIUse('SystemCapability.Multimedia.Scan.ScanBarcode'))
@@ -52,7 +53,7 @@ export struct HomePage {
         Blank()
         HcSearchBox({layoutWeightValue: 1})
 
-        HcClockIn()
+        HcClockIn({clockInCount: this.user.clockinNumbers})
       }
       .padding({left:16, right:16})
       .height(64)

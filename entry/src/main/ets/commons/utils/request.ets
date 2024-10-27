@@ -11,6 +11,8 @@ export const instance = axios.create({
 
 // 响应拦截器
 instance.interceptors.response.use((res: AxiosResponse) => {
+  logger.info(`response${JSON.stringify(res)}`)
+
   if (res.data.code === 10000) {
     logger.debug('Req Success', JSON.stringify(res.data.data))
     return res.data.data
@@ -23,8 +25,9 @@ instance.interceptors.response.use((res: AxiosResponse) => {
 })
 // 请求拦截器
 instance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+  logger.info(`request${JSON.stringify(config)}`)
   const user = auth.getUser()
-  if (user.token) {
+  if (user.token && config.url !== 'question/type') {
     config.headers.Authorization = `Bearer ${user.token}`
   }
   return config

@@ -78,3 +78,20 @@ export interface QuestionOptParams {
   /* 1 点赞  2 收藏 */
   optType: 1 | 2
 }
+
+export interface ClockInItem {
+  id: string,
+  createdAt: string
+}
+
+export interface ClockInfo {
+  flag: boolean
+  clockinNumbers: number
+  totalClockinNumber: number
+  clockins: ClockInItem[]
+}
+
+export interface ClockInfoParams {
+  year: string,
+  month: string
+}

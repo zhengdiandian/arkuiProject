@@ -28,7 +28,7 @@ const mockData: QuestionType[] = [
 ]
 @Component
 export struct HomeCategory{
-  @State questionTypeList:QuestionType[] = mockData
+  @State questionTypeList:QuestionType[] = []
   @State activeIndex: number = 0
   @State isShow:boolean = false
   @State filterDataIndex: number = 0
@@ -186,14 +186,23 @@ export struct HomeCategory{
     }
   }
    async  getData() {
-     this.isLoading = true
-     const res =  await getQuestionTypeList()
-     this.questionTypeList = res
-     this.isLoading = false
+
+
    }
   async  aboutToAppear() {
-    this.getData()
-    emitter.on(LOGIN_EVENT, this.getData)
+    try {
+
+      this.isLoading = true
+      emitter.on(LOGIN_EVENT, this.getData)
+
+      const res =  await getQuestionTypeList()
+      this.questionTypeList = res
+      this.isLoading = false
+
+    } catch (e) {
+      logger.error(e)
+    }
+
 
   }
   build() {

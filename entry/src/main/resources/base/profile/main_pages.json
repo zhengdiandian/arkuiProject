@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/QuestionPage",
     "pages/Login",
-    "pages/SearchPage"
+    "pages/SearchPage",
+    "pages/ClockInPage"
   ]
 }
