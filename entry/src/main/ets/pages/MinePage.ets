@@ -2,7 +2,7 @@ import { HcClockIn } from '../commons/components'
 import { router } from '@kit.ArkUI'
 import { formatTime, statusBar } from '../commons/utils'
 import { User } from '../models'
-import { UserStoreKey } from '../commons/utils/Auth'
+import { auth, UserStoreKey } from '../commons/utils/Auth'
 
 interface Nav {
   icon: ResourceStr
@@ -146,9 +146,9 @@ export struct MinePage {
           name: '累计学时',
           other: formatTime( this.user.totalTime),
           onClick: () => {
-            // TODO
-          }
-        })
+              auth.checkAuth({ url: 'pages/StudyTimePage' })
+              }
+          })
       }
       .backgroundColor($r('app.color.white'))
       .padding(16)
