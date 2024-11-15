@@ -166,7 +166,12 @@ export struct MinePage {
         this.toolsBuilder({ icon: $r('app.media.ic_mine_info'), name: '关于我们' })
         this.toolsBuilder({
           icon: $r('app.media.ic_mine_setting'), name: '设置', onClick: () => {
-            // TODO
+            router.push({
+              url: 'pages/SettingPage'
+            })
+            // auth.checkAuth({
+            //   url: '/pages/SettingPage'
+            // })
           }
         })
       }

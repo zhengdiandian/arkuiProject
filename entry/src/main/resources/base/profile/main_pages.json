@@ -5,6 +5,9 @@
     "pages/Login",
     "pages/SearchPage",
     "pages/ClockInPage",
-    "pages/StudyTimePage"
+    "pages/StudyTimePage",
+    "pages/WordPage",
+    "pages/SettingPage",
+    "pages/EditProfilePage"
   ]
 }

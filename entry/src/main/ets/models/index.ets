@@ -115,3 +115,11 @@ export interface StudyTimeData {
   totalTime: number,
   studyData: StudyTimeCate[]
 }
+
+export interface WordItem {
+  zh: string
+  en: string
+  code: string
+}
+
+export  type Words = Record<string, WordItem[]>
