@@ -1,12 +1,13 @@
 import { HcNavBar } from '../commons/components'
 import { HcLoadingDialog } from '../commons/components/HcLoadingDialog'
-import { setAvatar, updateNickName } from '../commons/request/home'
+import { getUserInfo, setAvatar, updateNickName } from '../commons/request/home'
 import { auth, UserStoreKey } from '../commons/utils/Auth'
 import { User } from '../models'
 import { promptAction } from '@kit.ArkUI'
 import { photoAccessHelper } from '@kit.MediaLibraryKit'
 import { fileIo } from '@kit.CoreFileKit'
 import { FormData } from '@ohos/axios'
+import { logger } from '../commons/utils'
 
 @Preview
 @Entry
@@ -35,30 +36,39 @@ struct EditProfilePage {
               .border({ width: 0.5, color: $r('app.color.common_gray_border') })
               .onClick(async () => {
                 // TODO 更新头像
+                try {
+                  // 1. 选择相册照片
+                  // 选择照片配置
+                  const photoSelectOptions = await new photoAccessHelper.PhotoSelectOptions()
+                  photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE
+                  photoSelectOptions.maxSelectNumber = 1
+                  // 选择照片对象
+                  const photoPicker = new photoAccessHelper.PhotoViewPicker()
+                  const photoResult = await photoPicker.select(photoSelectOptions)
+                  const uri = photoResult.photoUris[0]
 
-                // 1. 选择相册照片
-                // 选择照片配置
-                const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions()
-                photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE
-                photoSelectOptions.maxSelectNumber = 1
-                // 选择照片对象
-                const photoPicker = new photoAccessHelper.PhotoViewPicker()
-                const photoResult = await photoPicker.select(photoSelectOptions)
-                const uri = photoResult.photoUris[0]
+                  this.dialog.open()
+                  // 2. 拷贝选择的图片到应用沙箱
+                  const file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY)
+                  const filePath = getContext(this).cacheDir + '/' + file.name
+                  fileIo.copyFileSync(file.fd, filePath)
+                  fileIo.closeSync(file.fd)
+                  const formData :FormData = new FormData()
+                  formData.append('file', `internal://cache/${file.name}`)
+                  const res = await  setAvatar(formData, getContext(this))
+                  const  user = await  getUserInfo()
+                  logger.info(JSON.stringify(user))
 
-                this.dialog.open()
-                // 2. 拷贝选择的图片到应用沙箱
-                const file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY)
-                const filePath = getContext(this).cacheDir + '/' + file.name
-                fileIo.copyFileSync(file.fd, filePath)
-                fileIo.closeSync(file.fd)
-                const formData :FormData = new FormData()
-                formData.append('file', `internal://cache/${file.name}`)
-                const user = await  setAvatar(formData, getContext(this))
-                this.user.avatar = user.avatar
-                auth.setUser(this.user)
-                promptAction.showToast({ message: '更新头像成功' })
-                this.dialog.close()
+                  this.user.avatar = user.avatar
+                  auth.setUser(this.user)
+                  promptAction.showToast({ message: '更新头像成功' })
+                } catch (e) {
+                  logger.error(JSON.stringify(e as  object))
+                } finally {
+                  this.dialog.close()
+
+                }
+
               })
           }
           .width('100%')

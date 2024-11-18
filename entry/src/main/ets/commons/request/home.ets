@@ -32,3 +32,9 @@ export  const setAvatar = (formData : FormData, context: Context):Promise<User> 
     context
   })
 }
+export const  getUserInfo = ():Promise<User> => {
+  return http.request<User>({
+    url: 'userInfo',
+    method: 'get',
+  })
+}

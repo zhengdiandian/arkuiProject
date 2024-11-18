@@ -17,7 +17,7 @@ instance.interceptors.response.use((res: AxiosResponse) => {
     logger.debug('Req Success', JSON.stringify(res.data.data))
     return res.data.data
   }
-  logger.error('Req Error', JSON.stringify(res.data))
+  logger.error('Req Error', JSON.stringify(res))
   return Promise.reject(res.data)
 }, (err: AxiosError) => {
   logger.error('Req Error', JSON.stringify(err))
