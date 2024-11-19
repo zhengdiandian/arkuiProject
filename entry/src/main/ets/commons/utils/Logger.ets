@@ -1,32 +1,33 @@
-import { hilog } from '@kit.PerformanceAnalysisKit';
+import hilog from '@ohos.hilog'
 
-const LOGGER_PREFIX: string = 'interview_success_logger';
+const DOMAIN = 0xFF09
+const PREFIX = 'PASS_INTERVIEW_LOGGER'
+const FORMAT = '%{public}s, %{public}s'
 
 class Logger {
-  private domain: number;
-  private prefix: string;
-  private format: string = '%{public}s, %{public}s';
-
-  constructor(prefix: string = '', domain: number = 0x0000) {
-    this.prefix = prefix;
-    this.domain = domain;
+  debug(...args: string[]) {
+    hilog.debug(DOMAIN, PREFIX, FORMAT, args)
   }
 
-  debug(...args: string[]): void {
-    hilog.debug(this.domain, this.prefix, this.format, args);
+  info(...args: string[]) {
+    hilog.info(DOMAIN, PREFIX, FORMAT, args)
   }
 
-  info(...args: string[]): void {
-    hilog.info(this.domain, this.prefix, this.format, args);
+  warn(...args: string[]) {
+    hilog.warn(DOMAIN, PREFIX, FORMAT, args)
   }
 
-  warn(...args: string[]): void {
-    hilog.warn(this.domain, this.prefix, this.format, args);
+  error(...args: string[]) {
+    hilog.error(DOMAIN, PREFIX, FORMAT, args)
   }
 
-  error(...args: string[]): void {
-    hilog.error(this.domain, this.prefix, this.format, args);
+  fatal(...args: string[]) {
+    hilog.fatal(DOMAIN, PREFIX, FORMAT, args)
+  }
+
+  isLoggable(level: hilog.LogLevel) {
+    hilog.isLoggable(DOMAIN, PREFIX, level)
   }
 }
 
-export const logger =  new Logger(LOGGER_PREFIX, 0x1234);
+export const logger = new Logger()

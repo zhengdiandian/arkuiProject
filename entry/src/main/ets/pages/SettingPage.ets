@@ -2,6 +2,7 @@ import { HcNavBar } from "../commons/components";
 import { auth } from "../commons/utils/Auth";
 import { router } from "@kit.ArkUI";
 import { User } from "../models";
+import { SettingsThemeDialog } from "./views/Settings/SettingsThemeDialog";
 
 export interface Tool {
   icon?: ResourceStr
@@ -15,8 +16,12 @@ export interface Tool {
 @Entry
 @Component
 struct SettingPage {
-  @State message: string = 'Hello World';
+  dialog = new CustomDialogController({
+    builder: SettingsThemeDialog(),
+    alignment: DialogAlignment.Bottom
+  })
   @Builder
+
   toolsBuilder(tool: Tool) {
     Row() {
       if (tool.icon) {
@@ -89,6 +94,7 @@ struct SettingPage {
          radius: 1,
          onClick: () => {
            // TODO 设置主题
+           this.dialog.open()
          }
        })
        this.toolsBuilder({

@@ -1,11 +1,13 @@
 import { logger, statusBar } from '../commons/utils';
 import { auth } from '../commons/utils/Auth';
+import { theme } from '../commons/utils/Theme';
 import { TabBarModel } from '../models/TabBarModel';
 import { HomePage } from './HomePage';
 import { InterviewPage } from './InterviewPage';
 import { MinePage } from './MinePage';
 import { ProjectPage } from './ProjectPage';
 auth.initUser()
+theme.initTheme()
 logger.info('MinePage', '这是首页的日志')
 // struct Index 数据
 const tabList: TabBarModel[] = [
