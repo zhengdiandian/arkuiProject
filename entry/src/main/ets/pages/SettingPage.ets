@@ -1,8 +1,10 @@
 import { HcNavBar } from "../commons/components";
 import { auth } from "../commons/utils/Auth";
-import { router } from "@kit.ArkUI";
+import { promptAction, router } from "@kit.ArkUI";
 import { User } from "../models";
 import { SettingsThemeDialog } from "./views/Settings/SettingsThemeDialog";
+import { bundleManager } from "@kit.AbilityKit";
+import { fileIo, storageStatistics } from "@kit.CoreFileKit";
 
 export interface Tool {
   icon?: ResourceStr
@@ -20,6 +22,46 @@ struct SettingPage {
     builder: SettingsThemeDialog(),
     alignment: DialogAlignment.Bottom
   })
+  @State
+  cache: string = ''
+  @State
+  version: string = ''
+  calcCache() {
+    storageStatistics.getCurrentBundleStats()
+      .then(res => {
+        this.cache = (res.cacheSize / (1000 * 1000)).toFixed(2) + 'MB'
+      })
+  }
+
+  clearCache() {
+    const ctx = getContext()
+    const ctxCacheDir = ctx.cacheDir
+    const ctxExist = fileIo.accessSync(ctxCacheDir)
+    if (ctxExist) {
+      fileIo.rmdirSync(ctxCacheDir)
+    }
+    const app = ctx.getApplicationContext()
+    const appCacheDir = app.cacheDir
+    const appExist = fileIo.accessSync(appCacheDir)
+    if (appExist) {
+      fileIo.rmdirSync(appCacheDir)
+    }
+    promptAction.showToast({ message: '清理完毕' })
+    this.calcCache()
+  }
+  aboutToAppear(): void {
+    this.getVersion()
+  }
+  getVersion() {
+    bundleManager.getBundleInfoForSelf(
+      bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION
+    ).then((res) => {
+      this.version = 'v' + res.versionName
+    })
+  }
+  onPageShow(): void {
+    this.calcCache()
+  }
   @Builder
 
   toolsBuilder(tool: Tool) {
@@ -98,11 +140,11 @@ struct SettingPage {
          }
        })
        this.toolsBuilder({
-         name: '清除应用缓存', value: '10MB', onClick: () => {
-           // TODO 清除缓存
+         name: '清除应用缓存', value: this.cache, onClick: () => {
+           this.clearCache()
          }
        })
-       this.toolsBuilder({ name: '当前版本', value: '1.0.0', radius: 2 })
+       this.toolsBuilder({ name: '当前版本', value: this.version, radius: 2 })
        Blank()
          .height(15)
        Text('退出账号')
