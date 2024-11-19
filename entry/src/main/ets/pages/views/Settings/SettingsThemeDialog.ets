@@ -5,7 +5,7 @@ import { ConfigurationConstant } from "@kit.AbilityKit"
 export struct SettingsThemeDialog {
   controller: CustomDialogController
   @StorageProp(ColorModeKey) colorMode: ConfigurationConstant.ColorMode =
-    ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT
+    ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET
   build() {
     Column() {
       Row() {

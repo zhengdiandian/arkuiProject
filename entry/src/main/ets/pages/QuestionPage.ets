@@ -11,6 +11,10 @@ import { QuestionShareDialog } from './views/Question/QuestionShareDialog'
 @Component
   struct  QuestionPage {
   webController :WebviewController = new webview.WebviewController();
+  @StorageProp('isDark') isDark: boolean = false
+
+  @State
+  mode: WebDarkMode =  this.isDark? WebDarkMode.On : WebDarkMode.Auto
   dialog = new CustomDialogController({
     builder: HcLoadingDialog(),
     customStyle: true,
@@ -155,7 +159,7 @@ import { QuestionShareDialog } from './views/Question/QuestionShareDialog'
         .color($r('app.color.common_gray_bg'))
 
       this.TitleBuilder('答案')
-      Web({src: $rawfile('question.html') ,controller: this.webController})
+      Web({src: $rawfile('question.html') ,controller: this.webController}).darkMode(this.mode)
         .layoutWeight(1)
         // .padding(16)
         .onPageEnd(() => {
