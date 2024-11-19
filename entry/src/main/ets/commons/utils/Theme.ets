@@ -1,4 +1,4 @@
-import {ConfigurationConstant } from '@kit.AbilityKit'
+import { common, ConfigurationConstant } from '@kit.AbilityKit'
 
 export const ColorModeKey = 'zp-color-mode'
 class Theme  {
@@ -11,6 +11,9 @@ class Theme  {
     AppStorage.set<ConfigurationConstant.ColorMode>(ColorModeKey, mode)
     const context = AppStorage.get<Context>('context')
     context?.getApplicationContext().setColorMode(mode)
+    // config.colorMode 只有 COLOR_MODE_DARK 和 COLOR_MODE_LIGHT , 也就是可以判断是否是暗色
+    AppStorage.setOrCreate('isDark',
+      (context as common.UIAbilityContext).config.colorMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK)
   }
   // 跟随系统
   notSet() {

@@ -28,6 +28,7 @@ const mockData: QuestionType[] = [
 ]
 @Component
 export struct HomeCategory{
+  @StorageProp('isDark') isDark: boolean = false
   @State questionTypeList:QuestionType[] = []
   @State activeIndex: number = 0
   @State isShow:boolean = false
@@ -245,7 +246,10 @@ export struct HomeCategory{
         .width(56)
         .height(44)
         .justifyContent(FlexAlign.Center)
-        .linearGradient({ angle: 90, colors: [['#00FFFFFF', 0], ['#FFFFFF', 0.285]] })
+        .linearGradient({
+          angle: 90,
+          colors: [[this.isDark ? '#131313' : '#FFFFFF', 0], [this.isDark ? '#131313' : '#FFFFFF', 0.285]]
+        })
         .bindSheet($$this.isShow, this.FilterSheetBuilder(), {
           showClose: false,
           height: 400
