@@ -11,7 +11,7 @@ class Theme  {
     AppStorage.set<ConfigurationConstant.ColorMode>(ColorModeKey, mode)
     const context = AppStorage.get<Context>('context')
     context?.getApplicationContext().setColorMode(mode)
-    // config.colorMode 只有 COLOR_MODE_DARK 和 COLOR_MODE_LIGHT , 也就是可以判断是否是暗色
+    // todo  config.colorMode 只有 COLOR_MODE_DARK 和 COLOR_MODE_LIGHT , 也就是可以判断是否是暗色，COLOR_MODE_NOT_SET时没法判断
     AppStorage.setOrCreate('isDark',
       (context as common.UIAbilityContext).config.colorMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK)
   }
