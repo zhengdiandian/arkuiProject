@@ -4,6 +4,7 @@ import { util } from '@kit.ArkTS'
 import { logger } from '../commons/utils'
 import { webview } from '@kit.ArkWeb'
 import { promptAction } from '@kit.ArkUI'
+import { WordDialog } from './views/Word/WordDialog'
 
 @Preview
 @Entry
@@ -16,6 +17,13 @@ struct WordPage {
   @State currentCode: string = ''
   webController = new webview.WebviewController()
   @State showCodeSheet: boolean = false
+  @State currentEn: string = ''
+  @State currentZh: string = ''
+  dialog = new CustomDialogController({
+    builder: WordDialog({ en: this.currentEn, zh: this.currentZh }),
+    customStyle: true,
+    alignment: DialogAlignment.Center
+  })
   @Builder
   CodeSheetBuilder() {
     Column(){
@@ -119,6 +127,11 @@ struct WordPage {
                 .aspectRatio(1)
                 .alignSelf(ItemAlign.Start)
                 .fillColor($r('app.color.common_gray_03'))
+                .onClick(() => {
+                  this.currentEn = item.en
+                  this.currentZh = item.zh
+                  this.dialog.open()
+                })
               Column({ space: 10 }) {
                 Text(item.en)
                   .fontWeight(FontWeight.Bold)
