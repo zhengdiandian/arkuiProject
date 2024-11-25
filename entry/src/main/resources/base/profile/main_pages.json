@@ -8,6 +8,7 @@
     "pages/StudyTimePage",
     "pages/WordPage",
     "pages/SettingPage",
-    "pages/EditProfilePage"
+    "pages/EditProfilePage",
+    "pages/AudioPage"
   ]
 }

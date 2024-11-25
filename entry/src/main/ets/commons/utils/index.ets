@@ -6,6 +6,8 @@ export * from './Logger'
 export * from './FullScreen'
 export * from './StatusBar'
 export  * from './request'
+export  * from './Permission'
+export  * from './AudioDB'
 
 const day = 60 * 60 * 24
 const hour = 60 * 60

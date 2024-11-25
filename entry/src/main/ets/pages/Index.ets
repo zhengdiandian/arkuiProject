@@ -4,6 +4,7 @@ import { theme } from '../commons/utils/Theme';
 import { TabBarModel } from '../models/TabBarModel';
 import { HomePage } from './HomePage';
 import { InterviewPage } from './InterviewPage';
+import { AudioPage } from './AudioPage';
 import { MinePage } from './MinePage';
 import { ProjectPage } from './ProjectPage';
 auth.initUser()
@@ -62,7 +63,7 @@ struct Index {
            }else if(i === 1){
              ProjectPage()
            }else  if(i ===2){
-             InterviewPage()
+             AudioPage()
            }else {
              MinePage()
            }

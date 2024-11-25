@@ -19,7 +19,11 @@
 
     {
       "name": "permission_reason_camera",
-      "value": "用于拍照扫码"
+      "value": "用于首頁拍照扫码"
+    },
+    {
+      "name": "reason_microphone",
+      "value": "用于录音模块的录音"
     }
   ]
 }

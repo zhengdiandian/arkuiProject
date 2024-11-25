@@ -8,6 +8,7 @@ export const instance = axios.create({
   baseURL,
   timeout: 100000
 })
+const whiteList: string[] = ['question/list',  'question/type']
 
 // 响应拦截器
 instance.interceptors.response.use((res: AxiosResponse) => {
@@ -27,7 +28,8 @@ instance.interceptors.response.use((res: AxiosResponse) => {
 instance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   logger.info(`request${JSON.stringify(config)}`)
   const user = auth.getUser()
-  if (user.token && config.url !== 'question/type') {
+
+  if (user.token && !whiteList.includes(config.url as string)) {
     config.headers.Authorization = `Bearer ${user.token}`
   }
   return config
