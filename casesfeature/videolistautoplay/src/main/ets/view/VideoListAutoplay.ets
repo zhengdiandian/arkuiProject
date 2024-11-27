@@ -18,7 +18,7 @@ import { NewsListDataSource } from '../model/NewsListDataSource';
 import { TabBarType } from '../model/TabBarModel';
 import { CustomTabBar } from './CustomComponent';
 import { XComponentVideo } from './XComponentVideo';
-import { promptAction } from '@kit.ArkUI';
+import { promptAction, router } from '@kit.ArkUI';
 
 const CACHE_COUNT: number = 4; // 列表预加载数量
 const BORDER_WIDTH: number = 1.5; // 搜索框线条宽度
@@ -134,6 +134,14 @@ export struct VideoListAutoplayComponent {
               index: index
             })
           }
+          .onClick(() => {
+            promptAction.showToast({ message: '测试' });
+            // router.pushNamedRoute({
+            //   name: 'videoDetail'
+            // })
+            router.pushUrl({ url: 'pages/videoDetailPage', params: news })
+
+          })
           .backgroundColor($r('app.color.video_list_autoplay_lazy_foreach_list_page_list_item_background_color'))
           .borderRadius($r('app.integer.video_list_autoplay_lazy_foreach_list_page_list_item_border_radius'))
           .margin({ bottom: $r('app.integer.video_list_autoplay_lazy_foreach_list_page_list_item_margin_bottom') })

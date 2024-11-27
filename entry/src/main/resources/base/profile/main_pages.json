@@ -9,6 +9,7 @@
     "pages/WordPage",
     "pages/SettingPage",
     "pages/EditProfilePage",
-    "pages/AudioPage"
+    "pages/AudioPage",
+    "pages/videoDetailPage"
   ]
 }

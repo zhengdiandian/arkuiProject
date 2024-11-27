@@ -6,6 +6,7 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "videolistautoplay": "file:../casesfeature/videolistautoplay"
+    "videolistautoplay": "file:../casesfeature/videolistautoplay",
+    "pipwindow": "file:../casesfeature/pipwindow"
   }
 }
