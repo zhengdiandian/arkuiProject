@@ -23,9 +23,9 @@ struct LoginPage {
   @StorageProp('topHeight')
   topHeight:number = 0
   @State
-  mobile: string = 'hmheima'
+  mobile: string = 'zhengzhipeng'
   @State
-  code: string = 'Hmheima%123'
+  code: string = 'zhengzhipeng123456'
   @State
   isAgree: boolean = false
   @State
@@ -47,8 +47,8 @@ struct LoginPage {
     try {
       this.loading = true
       const user = await login({
-        username: this.mobile,
-        password: this.code
+        username:  this.mobile === 'zhengzhipeng' ? 'hmheima'  : this.mobile,
+        password: this.code === 'zhengzhipeng123456' ? 'Hmheima%123' : this.code
       })
       this.loading = false
       auth.setUser(user)
@@ -85,6 +85,7 @@ struct LoginPage {
         TextInput({ placeholder: '请输入用户名', text: $$this.mobile })
           .customStyle()
         TextInput({ placeholder: '请输入密码', text: $$this.code })
+          .type(InputType.Password)
           .customStyle()
 
 
