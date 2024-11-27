@@ -20,12 +20,12 @@ const tabList: TabBarModel[] = [
   {
     icon: $r('app.media.tabbar_project'),
     activeIcon: $r('app.media.tabbar_project_fill'),
-    name: '项目'
+    name: '视频'
   },
   {
     icon: $r('app.media.tabbar_interview'),
     activeIcon: $r('app.media.tabbar_interview_fill'),
-    name: '面经'
+    name: '录音'
   },
   {
     icon: $r('app.media.tabbar_mine'),
