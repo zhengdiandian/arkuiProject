@@ -106,7 +106,10 @@ struct LoginPage {
             .fontSize(14)
             .padding({ right: 4 })
             .onClick(() => {
-              promptAction.showToast({message: '仅供预览'})
+              router.pushUrl({
+                url: 'pages/WebPage',
+                params: { title: '用户协议', src: 'http://110.41.143.89/user' }
+              })
             })
           Text('和')
             .fontSize(14)
@@ -115,7 +118,10 @@ struct LoginPage {
           Text('隐私政策')
             .fontSize(14)
             .onClick(() => {
-              promptAction.showToast({message: '仅供预览'})
+              router.pushUrl({
+                url: 'pages/WebPage',
+                params: { title: '隐私政策', src: 'http://110.41.143.89/privacy' }
+              })
             })
 
         }
