@@ -62,7 +62,6 @@ export struct AudioRecordComp {
   build() {
     Column() {
       AudioBoComp({ maxAmplitude: this.maxAmplitude })
-      Text('1111')
       Row() {
         Image($r('sys.media.ohos_ic_public_voice'))
           .width(24)
