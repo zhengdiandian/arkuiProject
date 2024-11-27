@@ -7,6 +7,8 @@ import { InterviewPage } from './InterviewPage';
 import { AudioPage } from './AudioPage';
 import { MinePage } from './MinePage';
 import { ProjectPage } from './ProjectPage';
+import { promptAction } from '@kit.ArkUI';
+import app from '@system.app';
 auth.initUser()
 theme.initTheme()
 logger.info('MinePage', '这是首页的日志')
@@ -39,6 +41,9 @@ struct Index {
   @StorageProp('topHeight') topHeight: number = 0
   @StorageProp('bottomHeight') bottomHeight: number = 0
   @State activeIndex: number= 0
+  private lastExitTime: number = -1;               // 记录点击时间
+
+  @State count: number = 0;
   @Builder
   TabBarBuilder(item: TabBarModel, index: number){
       Column({space: 5}){
@@ -52,6 +57,27 @@ struct Index {
 
   }
 
+  onBackPress() {
+    if (-1 == this.lastExitTime) {                 // 第一次点击返回键，提示toast
+      this.lastExitTime = new Date().getTime();
+      promptAction.showToast({
+        message: "再按一次退出应用"
+      })
+      return true;
+    } else {
+      let currentTime = new Date().getTime();
+      if(currentTime - this.lastExitTime > 2000) { // 时间大于2000提示
+        promptAction.showToast({
+          message: "再按一次退出应用"
+        })
+        this.lastExitTime = currentTime;
+        return true;
+      } else {                                     // 2秒内点击，退出APP
+        app.terminate();
+      }
+    }
+    return false;
+  }
 
   build() {
     Column() {
