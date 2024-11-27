@@ -31,36 +31,36 @@ export class NewsItem {
 }
 
 export const NEWS_LIST_DATA = [
-  new NewsItem(
-    "Tech Giant Releases New Smartphone",
-    "https://example.com/videos/tech-giant-new-smartphone.mp4",
-    "https://example.com/images/tech-giant-new-smartphone.jpg",
-    "The latest smartphone from the tech giant features an innovative design and cutting-edge technology."
-  ),
-  new NewsItem(
-    "Global Markets Rally Amid Economic Optimism",
-    "https://example.com/videos/global-markets-rally.mp4",
-    "https://example.com/images/global-markets-rally.jpg",
-    "Global stock markets saw significant gains today, fueled by optimism over the economic outlook."
-  ),
-  new NewsItem(
-    "Breakthrough in Renewable Energy Technology",
-    "https://example.com/videos/renewable-energy-breakthrough.mp4",
-    "https://example.com/images/renewable-energy-breakthrough.jpg",
-    "Scientists have made a major breakthrough in renewable energy technology that could revolutionize the industry."
-  ),
-  new NewsItem(
-    "Historic Peace Agreement Signed",
-    "https://example.com/videos/peace-agreement-signed.mp4",
-    "https://example.com/images/peace-agreement-signed.jpg",
-    "Leaders from both countries signed a historic peace agreement today, ending years of conflict."
-  ),
-  new NewsItem(
-    "Sports Update: Championship Results",
-    "https://example.com/videos/championship-results.mp4",
-    "https://example.com/images/championship-results.jpg",
-    "In the latest sports update, we cover the results of the championship games held over the weekend."
-  ),
+  // new NewsItem(
+  //   "Tech Giant Releases New Smartphone",
+  //   "https://example.com/videos/tech-giant-new-smartphone.mp4",
+  //   "https://example.com/images/tech-giant-new-smartphone.jpg",
+  //   "The latest smartphone from the tech giant features an innovative design and cutting-edge technology."
+  // ),
+  // new NewsItem(
+  //   "Global Markets Rally Amid Economic Optimism",
+  //   "https://example.com/videos/global-markets-rally.mp4",
+  //   "https://example.com/images/global-markets-rally.jpg",
+  //   "Global stock markets saw significant gains today, fueled by optimism over the economic outlook."
+  // ),
+  // new NewsItem(
+  //   "Breakthrough in Renewable Energy Technology",
+  //   "https://example.com/videos/renewable-energy-breakthrough.mp4",
+  //   "https://example.com/images/renewable-energy-breakthrough.jpg",
+  //   "Scientists have made a major breakthrough in renewable energy technology that could revolutionize the industry."
+  // ),
+  // new NewsItem(
+  //   "Historic Peace Agreement Signed",
+  //   "https://example.com/videos/peace-agreement-signed.mp4",
+  //   "https://example.com/images/peace-agreement-signed.jpg",
+  //   "Leaders from both countries signed a historic peace agreement today, ending years of conflict."
+  // ),
+  // new NewsItem(
+  //   "Sports Update: Championship Results",
+  //   "https://example.com/videos/championship-results.mp4",
+  //   "https://example.com/images/championship-results.jpg",
+  //   "In the latest sports update, we cover the results of the championship games held over the weekend."
+  // ),
   new NewsItem('AI伦理讨论峰会',
     'https://gitee.com/harmonyos-cases/cases/raw/master/CommonAppDevelopment/feature/mediafullscreen/src/main/resources/rawfile/media_full_screen_video1.MP4',
     $r('app.media.video_list_autoplay_preview1'), '伤心千古，泪痕如洗'),

@@ -41,6 +41,7 @@ const VIDEO_LIST_LAYOUT_WEIGHT: number = 1; // 视频列表权重
  */
 @Component
 export struct VideoListAutoplayComponent {
+  @StorageProp('topHeight') topHeight: number = 0
   @State currentIndex: TabBarType = TabBarType.DISCOVER; // Tab组件当前选中index值
   private newsList: NewsListDataSource = new NewsListDataSource(); // 视频信息集合
   @Provide isLoading: boolean = true; // 视频是否加载中
@@ -60,6 +61,7 @@ export struct VideoListAutoplayComponent {
       // CustomTabBar({ currentIndex: $currentIndex });
     }
     .height($r('app.string.video_list_autoplay_height'))
+    .margin({ top: this.topHeight })
   }
 
   /**
@@ -112,6 +114,9 @@ export struct VideoListAutoplayComponent {
     .clip(false)
     .width($r('app.string.video_list_autoplay_custom_search_width'))
     .justifyContent(FlexAlign.SpaceAround)
+    .onClick(() => {
+
+    })
   }
 
   /**
