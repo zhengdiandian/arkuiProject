@@ -11,6 +11,7 @@
     "pages/EditProfilePage",
     "pages/AudioPage",
     "pages/videoDetailPage",
-    "pages/WebPage"
+    "pages/WebPage",
+    "pages/HistoryPage"
   ]
 }

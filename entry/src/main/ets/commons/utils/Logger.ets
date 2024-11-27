@@ -1,33 +1,49 @@
-import hilog from '@ohos.hilog'
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-const DOMAIN = 0xFF09
-const PREFIX = 'PASS_INTERVIEW_LOGGER'
-const FORMAT = '%{public}s, %{public}s'
+import hilog from '@ohos.hilog';
 
+/**
+ * 日志打印类
+ */
 class Logger {
+  private domain: number;
+  private prefix: string;
+  private format: string = '%{public}s, %{public}s';
+
+  constructor(prefix: string) {
+    this.prefix = prefix;
+    this.domain = 0xFF00;
+    this.format.toUpperCase();
+  }
+
   debug(...args: string[]) {
-    hilog.debug(DOMAIN, PREFIX, FORMAT, args)
+    hilog.debug(this.domain, this.prefix, this.format, args);
   }
 
   info(...args: string[]) {
-    hilog.info(DOMAIN, PREFIX, FORMAT, args)
+    hilog.info(this.domain, this.prefix, this.format, args);
   }
 
   warn(...args: string[]) {
-    hilog.warn(DOMAIN, PREFIX, FORMAT, args)
+    hilog.warn(this.domain, this.prefix, this.format, args);
   }
 
   error(...args: string[]) {
-    hilog.error(DOMAIN, PREFIX, FORMAT, args)
-  }
-
-  fatal(...args: string[]) {
-    hilog.fatal(DOMAIN, PREFIX, FORMAT, args)
-  }
-
-  isLoggable(level: hilog.LogLevel) {
-    hilog.isLoggable(DOMAIN, PREFIX, level)
+    hilog.error(this.domain, this.prefix, this.format, args);
   }
 }
 
-export const logger = new Logger()
+export let logger = new Logger('[CommonAppDevelopment]');

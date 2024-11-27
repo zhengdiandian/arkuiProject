@@ -3,6 +3,7 @@ import { router } from '@kit.ArkUI'
 import { formatTime, statusBar } from '../commons/utils'
 import { User } from '../models'
 import { auth, UserStoreKey } from '../commons/utils/Auth'
+import { OptionalRouterParams } from '../commons/components/HistoryList'
 
 interface Nav {
   icon: ResourceStr
@@ -134,17 +135,21 @@ export struct MinePage {
       GridRow({ columns: 4 }) {
         this.navBuilder({
           icon: $r('app.media.ic_mine_history'), name: '历史记录', onClick: () => {
-            // TODO
+            auth.checkAuth({ url: 'pages/HistoryPage', params: { type: 3, title: '历史记录'} as OptionalRouterParams } )
+
+
           }
         })
         this.navBuilder({
           icon: $r('app.media.ic_mine_collect'), name: '我的收藏', onClick: () => {
-            // TODO
+            auth.checkAuth({ url: 'pages/HistoryPage', params: { type: 2, title: '我的收藏'} as OptionalRouterParams } )
+
           }
         })
         this.navBuilder({
           icon: $r('app.media.ic_mine_like'), name: '我的点赞', onClick: () => {
-            // TODO
+            auth.checkAuth({ url: 'pages/HistoryPage', params: { type: 1, title: '我的点赞'} as OptionalRouterParams } )
+
           }
         })
         this.navBuilder({
@@ -169,10 +174,10 @@ export struct MinePage {
             )
           }
         })
-        this.toolsBuilder({ icon: $r('app.media.ic_mine_ai'), name: '面通AI' })
-        this.toolsBuilder({ icon: $r('app.media.ic_mine_invite'), name: '推荐分享' })
-        this.toolsBuilder({ icon: $r('app.media.ic_mine_file'), name: '意见反馈' })
-        this.toolsBuilder({ icon: $r('app.media.ic_mine_info'), name: '关于我们' })
+        // this.toolsBuilder({ icon: $r('app.media.ic_mine_ai'), name: '面通AI' })
+        // this.toolsBuilder({ icon: $r('app.media.ic_mine_invite'), name: '推荐分享' })
+        // this.toolsBuilder({ icon: $r('app.media.ic_mine_file'), name: '意见反馈' })
+        // this.toolsBuilder({ icon: $r('app.media.ic_mine_info'), name: '关于我们' })
         this.toolsBuilder({
           icon: $r('app.media.ic_mine_setting'), name: '设置', onClick: () => {
             router.push({
