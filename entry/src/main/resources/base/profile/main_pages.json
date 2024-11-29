@@ -12,6 +12,7 @@
     "pages/AudioPage",
     "pages/videoDetailPage",
     "pages/WebPage",
-    "pages/HistoryPage"
+    "pages/HistoryPage",
+    "pages/agreementPage"
   ]
 }

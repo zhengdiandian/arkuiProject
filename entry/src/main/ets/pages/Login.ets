@@ -108,8 +108,8 @@ struct LoginPage {
             .padding({ right: 4 })
             .onClick(() => {
               router.pushUrl({
-                url: 'pages/WebPage',
-                params: { title: '用户协议', src: 'http://110.41.143.89/user' }
+                url: 'pages/agreementPage',
+                // params: { title: '用户协议', src: 'http://110.41.143.89/user' }
               })
             })
           Text('和')
