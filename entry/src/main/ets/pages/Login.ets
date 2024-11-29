@@ -72,7 +72,7 @@ struct LoginPage {
         Image($r('app.media.icon'))
           .width(120)
           .aspectRatio(1)
-        Text('学习arkUI中')
+        Text('前端手册')
           .fontSize(28)
           .margin({ bottom: 15 })
         Text('联系邮箱：zzp19980703@gmail.com')
