@@ -6,6 +6,5 @@
   "author" : "",
   "license" : "Apache-2.0",
   "dependencies": {
-    "@entry/entry": "file:../../entry/src/main/ets/commons/utils/",
   }
 }
