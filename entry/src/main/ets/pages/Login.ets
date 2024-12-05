@@ -120,8 +120,8 @@ struct LoginPage {
             .fontSize(14)
             .onClick(() => {
               router.pushUrl({
-                url: 'pages/WebPage',
-                params: { title: '隐私政策', src: 'http://110.41.143.89/privacy' }
+                url: 'pages/PrivacyPage',
+                // params: { title: '隐私政策', src: 'http://110.41.143.89/privacy' }
               })
             })
 

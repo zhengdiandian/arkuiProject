@@ -13,6 +13,7 @@
     "pages/videoDetailPage",
     "pages/WebPage",
     "pages/HistoryPage",
-    "pages/agreementPage"
+    "pages/agreementPage",
+    "pages/PrivacyPage"
   ]
 }
