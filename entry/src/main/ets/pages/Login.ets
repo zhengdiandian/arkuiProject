@@ -23,9 +23,9 @@ struct LoginPage {
   @StorageProp('topHeight')
   topHeight:number = 0
   @State
-  mobile: string = 'zhengzhipeng'
+  mobile: string = ''
   @State
-  code: string = 'zhengzhipeng123456'
+  code: string = ''
   @State
   isAgree: boolean = false
   @State
