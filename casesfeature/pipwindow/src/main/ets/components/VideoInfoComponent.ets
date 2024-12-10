@@ -36,7 +36,7 @@ interface  NewsItem {
  */
 @Component
 export struct VideoInfoComponent {
-  @State TabsInfo: Array<string> = ['视频', '评论']; // tab标题
+  @State TabsInfo: Array<string> = ['视频']; // tab标题
   private scrollerForList: Scroller = new Scroller(); // 列表滚动控制器
   private arr: number[] = []; // 视频列表图片数组
   @Consume params:NewsItem
@@ -59,7 +59,7 @@ export struct VideoInfoComponent {
       // 视频详情页面tab组件
       this.TabView()
       // 视频详情页面vip卡片
-      this.VipCard()
+      // this.VipCard()
       // 视频详情页面相关视频详细介绍
       this.VideoItem()
       // 视频详情页面选集列表
@@ -81,23 +81,23 @@ export struct VideoInfoComponent {
         this.TabItem(item, index);
       })
       Blank()
-        .width($r('app.string.pip_window_tab_view_blank_width'))
-      TextInput({ placeholder: $r('app.string.pip_window_tab_view_text') })
-        .focusable(false)
-        .width($r('app.integer.pip_window_tab_view_text_width'))
-        .height($r('app.integer.pip_window_tab_view_text_height'))
-        .padding({
-          top: $r('app.integer.pip_window_tab_view_text_padding_top'),
-          bottom: $r('app.integer.pip_window_tab_view_text_padding_top')
-        })
-        .margin({ right: $r('app.integer.pip_window_tab_view_text_margin_right') })
-        .fontSize($r('app.integer.pip_window_tab_view_text_font_size'))
-        .onClick(() => {
-          // 调用Toast显示提示:此样式仅为案例展示
-          promptAction.showToast({ message: $r("app.string.pip_window_toast_tips") });
-        })
-        .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
-        .opacity(TEXT_OPACITY)
+        // .width($r('app.string.pip_window_tab_view_blank_width'))
+      // TextInput({ placeholder: $r('app.string.pip_window_tab_view_text') })
+      //   .focusable(false)
+      //   .width($r('app.integer.pip_window_tab_view_text_width'))
+      //   .height($r('app.integer.pip_window_tab_view_text_height'))
+      //   .padding({
+      //     top: $r('app.integer.pip_window_tab_view_text_padding_top'),
+      //     bottom: $r('app.integer.pip_window_tab_view_text_padding_top')
+      //   })
+      //   .margin({ right: $r('app.integer.pip_window_tab_view_text_margin_right') })
+      //   .fontSize($r('app.integer.pip_window_tab_view_text_font_size'))
+      //   .onClick(() => {
+      //     // 调用Toast显示提示:此样式仅为案例展示
+      //     promptAction.showToast({ message: $r("app.string.pip_window_toast_tips") });
+      //   })
+      //   .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+      //   .opacity(TEXT_OPACITY)
     }
     .clip(false)
     .height($r('app.integer.pip_window_tab_view_height'))
@@ -179,13 +179,13 @@ export struct VideoInfoComponent {
               .maxLines(1)
               .textOverflow({ overflow: TextOverflow.Ellipsis })
               .margin({ bottom: $r('app.integer.pip_window_video_item_row_text_margin_bottom') })
-            Text('小标题')
-              .width($r('app.string.pip_window_full_width'))
-              .fontSize($r('app.integer.pip_window_video_item_row_text_second_font'))
-              .opacity(VIDEO_CONTENT)
-              .maxLines(1)
-              .textOverflow({ overflow: TextOverflow.Ellipsis })
-              .textAlign(TextAlign.Start)
+            // Text('小标题')
+            //   .width($r('app.string.pip_window_full_width'))
+            //   .fontSize($r('app.integer.pip_window_video_item_row_text_second_font'))
+            //   .opacity(VIDEO_CONTENT)
+            //   .maxLines(1)
+            //   .textOverflow({ overflow: TextOverflow.Ellipsis })
+            //   .textAlign(TextAlign.Start)
           }
           .height($r('app.integer.pip_window_video_item_row_column_height'))
           .width($r('app.string.pip_window_video_item_row_column_width'))
@@ -220,9 +220,9 @@ export struct VideoInfoComponent {
         .width($r('app.string.pip_window_full_width'))
       Row() {
         List({ space: 20, scroller: this.scrollerForList }) {
-          ForEach(this.arr, (index: number) => {
+          // ForEach(this.arr, (index: number) => {
             ListItem() {
-              Image($r(`app.media.pip_window_preview` + (index + 1)))
+              Image(this.params.newsImage)
                 .margin({
                   right: $r('app.integer.pip_window_list_video_image_margin_right'),
                   bottom: $r('app.integer.pip_window_list_video_image_margin_bottom')
@@ -231,7 +231,7 @@ export struct VideoInfoComponent {
                 .height($r('app.integer.pip_window_list_video_image_height'))
                 .borderRadius($r('app.integer.pip_window_list_video_image_border'))
             }
-          })
+          // })
         }
         .listDirection(Axis.Horizontal)
         .width($r('app.string.pip_window_full_width'))

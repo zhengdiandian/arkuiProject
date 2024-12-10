@@ -56,7 +56,7 @@ export struct VideoListAutoplayComponent {
 
   build() {
     Column() {
-      this.CustomSearch();
+      // this.CustomSearch();
       this.LazyForEachListPage();
       // CustomTabBar({ currentIndex: $currentIndex });
     }
@@ -70,13 +70,13 @@ export struct VideoListAutoplayComponent {
   @Builder
   CustomSearch() {
     Row() {
-      Image($r('app.media.video_list_autoplay_drawer_filled'))
-        .width($r('app.integer.video_list_autoplay_custom_search_image'))
-        .height($r('app.integer.video_list_autoplay_custom_search_image'))
-        .onClick(() => {
-          // 调用Toast显示提示:此样式仅为案例展示
-          promptAction.showToast({ message: $r("app.string.video_list_autoplay_toast_tips") });
-        })
+      // Image($r('app.media.video_list_autoplay_drawer_filled'))
+      //   .width($r('app.integer.video_list_autoplay_custom_search_image'))
+      //   .height($r('app.integer.video_list_autoplay_custom_search_image'))
+      //   .onClick(() => {
+      //     // 调用Toast显示提示:此样式仅为案例展示
+      //     // promptAction.showToast({ message: $r("app.string.video_list_autoplay_toast_tips") });
+      //   })
       Row() {
         Image($r('app.media.video_list_autoplay_input_search'))
           .width($r('app.integer.video_list_autoplay_custom_search_image'))

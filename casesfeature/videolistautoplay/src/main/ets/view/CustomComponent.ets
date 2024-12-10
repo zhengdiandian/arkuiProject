@@ -65,7 +65,7 @@ export struct CustomTabBar {
     .justifyContent(FlexAlign.Center)
     .onClick(() => {
       // 调用Toast显示提示:此样式仅为案例展示
-      promptAction.showToast({ message: $r("app.string.video_list_autoplay_toast_tips") });
+      // promptAction.showToast({ message: $r("app.string.video_list_autoplay_toast_tips") });
     })
   }
 }

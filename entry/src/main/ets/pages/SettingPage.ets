@@ -129,7 +129,7 @@ struct SettingPage {
        this.toolsBuilder({ name: '账号设置', radius: 2 })
        Blank()
          .height(15)
-       this.toolsBuilder({ name: '消息推送', radius: 1 })
+       // this.toolsBuilder({ name: '消息推送', radius: 1 })
        this.toolsBuilder({
          name: '深色模式',
          value: '已关闭',

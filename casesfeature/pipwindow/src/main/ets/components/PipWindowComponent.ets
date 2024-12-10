@@ -361,24 +361,25 @@ export struct PipWindowComponent {
       .height($r('app.integer.pip_window_slider_height'))
 
       // 全屏icon
-      Image($r("app.media.pip_window_icon_large"))
-        .width($r('app.integer.pip_window_progress_bar_icon_play_width'))
-        .height($r('app.integer.pip_window_progress_bar_icon_play_width'))
-        .margin({
-          left: $r('app.integer.pip_window_progress_bar_icon_play_margin_left'),
-          right: $r('app.integer.pip_window_progress_bar_icon_play_margin_left')
-        })
-        .opacity(COMPONENT_OPACITY)
-        .onClick(() => {
-          // 调用Toast显示提示:此样式仅为案例展示
-          promptAction.showToast({ message: $r("app.string.pip_window_toast_tips") });
-        })
+      // Image($r("app.media.pip_window_icon_large"))
+      //   .width($r('app.integer.pip_window_progress_bar_icon_play_width'))
+      //   .height($r('app.integer.pip_window_progress_bar_icon_play_width'))
+      //   .margin({
+      //     left: $r('app.integer.pip_window_progress_bar_icon_play_margin_left'),
+      //     right: $r('app.integer.pip_window_progress_bar_icon_play_margin_left')
+      //   })
+      //   .opacity(COMPONENT_OPACITY)
+      //   .onClick(() => {
+      //     // 调用Toast显示提示:此样式仅为案例展示
+      //     promptAction.showToast({ message: $r("app.string.pip_window_toast_tips") });
+      //   })
 
       // 手动开启悬浮窗
       Image($r("app.media.pip_window_icon_move_out"))
         .width($r('app.integer.pip_window_progress_bar_icon_play_width'))
         .height($r('app.integer.pip_window_progress_bar_icon_play_width'))
         .margin({
+          left: $r('app.integer.pip_window_progress_bar_icon_play_margin_left'),
           right: $r('app.integer.pip_window_progress_bar_icon_play_margin_left')
         })
         .opacity(COMPONENT_OPACITY)

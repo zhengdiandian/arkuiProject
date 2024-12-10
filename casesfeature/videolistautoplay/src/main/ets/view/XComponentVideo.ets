@@ -414,25 +414,27 @@ export struct XComponentVideo {
           .fontSize($r('app.integer.video_list_autoplay_video_item_news_details_font_size'))
           .opacity(DETAILS_OPACITY)
           .padding({ bottom: $r('app.integer.video_list_autoplay_video_item_news_details_padding_bottom') })
+          .maxLines(2)
+          .textOverflow({overflow:TextOverflow.Ellipsis})
       }
       .width($r('app.string.video_list_autoplay_video_item_row_column_width'))
 
       // 视频图标
-      Row() {
-        Image($r('app.media.video_list_autoplay_drawer_filled'))
-          .width($r('app.integer.video_list_autoplay_video_item_icon_image_width'))
-          .height($r('app.integer.video_list_autoplay_video_item_icon_image_width'))
-        Image($r('app.media.video_list_autoplay_cancel_filled'))
-          .width($r('app.integer.video_list_autoplay_video_item_icon_image_width'))
-          .height($r('app.integer.video_list_autoplay_video_item_icon_image_width'))
-      }
-      .onClick(() => {
-        // 调用Toast显示提示:此样式仅为案例展示
-        promptAction.showToast({ message: $r("app.string.video_list_autoplay_toast_tips") });
-      })
-      .padding($r('app.integer.video_list_autoplay_video_item_row_icon_image_padding'))
-      .height($r('app.integer.video_list_autoplay_video_item_row_icon_image_height'))
-      .alignItems(VerticalAlign.Top)
+      // Row() {
+      //   Image($r('app.media.video_list_autoplay_drawer_filled'))
+      //     .width($r('app.integer.video_list_autoplay_video_item_icon_image_width'))
+      //     .height($r('app.integer.video_list_autoplay_video_item_icon_image_width'))
+      //   Image($r('app.media.video_list_autoplay_cancel_filled'))
+      //     .width($r('app.integer.video_list_autoplay_video_item_icon_image_width'))
+      //     .height($r('app.integer.video_list_autoplay_video_item_icon_image_width'))
+      // }
+      // .onClick(() => {
+      //   // 调用Toast显示提示:此样式仅为案例展示
+      //   promptAction.showToast({ message: $r("app.string.video_list_autoplay_toast_tips") });
+      // })
+      // .padding($r('app.integer.video_list_autoplay_video_item_row_icon_image_padding'))
+      // .height($r('app.integer.video_list_autoplay_video_item_row_icon_image_height'))
+      // .alignItems(VerticalAlign.Top)
     }
     .width($r('app.string.video_list_autoplay_video_item_news_name_width'))
     .justifyContent(FlexAlign.SpaceBetween)
