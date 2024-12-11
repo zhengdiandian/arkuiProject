@@ -17,14 +17,14 @@ function textTitle() {
   .margin({ top: 20 })
 }
 const mockData: QuestionType[] = [
-  { id: 1, name: 'ArkTS', displayNewestFlag: 0 },
-  { id: 2, name: 'ArkUI', displayNewestFlag: 1 },
-  { id: 3, name: 'Hap', displayNewestFlag: 1 },
-  { id: 4, name: 'Hsp', displayNewestFlag: 0 },
-  { id: 5, name: 'Har', displayNewestFlag: 0 },
-  { id: 6, name: 'Ability', displayNewestFlag: 0 },
-  { id: 7, name: 'Stage', displayNewestFlag: 0 },
-  { id: 8, name: 'Kit', displayNewestFlag: 0 }
+  // { id: 1, name: 'ArkTS', displayNewestFlag: 0 },
+  // { id: 2, name: 'ArkUI', displayNewestFlag: 1 },
+  // { id: 3, name: 'Hap', displayNewestFlag: 1 },
+  // { id: 4, name: 'Hsp', displayNewestFlag: 0 },
+  // { id: 5, name: 'Har', displayNewestFlag: 0 },
+  // { id: 6, name: 'Ability', displayNewestFlag: 0 },
+  // { id: 7, name: 'Stage', displayNewestFlag: 0 },
+  // { id: 8, name: 'Kit', displayNewestFlag: 0 }
 ]
 @Component
 export struct HomeCategory{
@@ -187,18 +187,18 @@ export struct HomeCategory{
     }
   }
    async  getData() {
-
-
+     this.isLoading = true
+     const res =  await getQuestionTypeList()
+     this.questionTypeList = res
+     this.isLoading = false
    }
   async  aboutToAppear() {
     try {
 
-      this.isLoading = true
-      emitter.on(LOGIN_EVENT, this.getData)
 
-      const res =  await getQuestionTypeList()
-      this.questionTypeList = res
-      this.isLoading = false
+      emitter.on(LOGIN_EVENT, this.getData)
+      this.getData()
+
 
     } catch (e) {
       logger.error(e)

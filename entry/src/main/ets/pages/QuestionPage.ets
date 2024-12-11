@@ -82,14 +82,14 @@ import { QuestionShareDialog } from './views/Question/QuestionShareDialog'
     }
     this.questionIndex = index
     const item = this.list[index]
-    if(this.item.answer){
-      this.item = item
-
-    } else {
+    // if(this.item.answer!==undefined){
+    //   this.item = item
+    //
+    // } else {
       const res = await this.getQuestionDetail(item.id)
       this.list[index] = res
       this.item = res
-    }
+    // }
     this.webController.runJavaScript(`writeHtml(\`${this.item.answer}\`)`)
   }
 
