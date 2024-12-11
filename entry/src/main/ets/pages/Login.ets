@@ -186,16 +186,16 @@ struct LoginPage {
 
 
 
-
-      Column() {
-        Text('其他登录方式')
-          .fontSize(14)
-          .fontColor($r('app.color.common_gray_01'))
-      }
-      .padding({ top: 70, bottom: 100 })
-      .onClick(() => {
-        promptAction.showToast({message: '没有真机暂不开发'})
-      })
+      //
+      // Column() {
+      //   Text('其他登录方式')
+      //     .fontSize(14)
+      //     .fontColor($r('app.color.common_gray_01'))
+      // }
+      // .padding({ top: 70, bottom: 100 })
+      // .onClick(() => {
+      //   promptAction.showToast({message: '没有真机暂不开发'})
+      // })
 
     }
     .width('100%')
