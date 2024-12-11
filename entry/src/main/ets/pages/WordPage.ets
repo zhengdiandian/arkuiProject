@@ -9,7 +9,7 @@ import { WordDialog } from './views/Word/WordDialog'
 @Preview
 @Entry
 @Component
-struct WordPage {
+export  struct WordPage {
   words: Words = {}
   @State wordKey:string = ''
   @State showTypeSheet: boolean = false

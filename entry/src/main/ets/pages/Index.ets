@@ -9,6 +9,8 @@ import { MinePage } from './MinePage';
 import { ProjectPage } from './ProjectPage';
 import { promptAction } from '@kit.ArkUI';
 import app from '@system.app';
+import { WordPage } from './WordPage';
+
 auth.initUser()
 theme.initTheme()
 logger.info('MinePage', '这是首页的日志')
@@ -27,7 +29,7 @@ const tabList: TabBarModel[] = [
   {
     icon: $r('app.media.tabbar_interview'),
     activeIcon: $r('app.media.tabbar_interview_fill'),
-    name: '录音'
+    name: '单词'
   },
   {
     icon: $r('app.media.tabbar_mine'),
@@ -89,7 +91,8 @@ struct Index {
            }else if(i === 1){
              ProjectPage()
            }else  if(i ===2){
-             AudioPage()
+             // AudioPage()
+             WordPage()
            }else {
              MinePage()
            }
