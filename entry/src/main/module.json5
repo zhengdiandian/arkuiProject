@@ -19,6 +19,9 @@
         "usedScene": {},
         "reason": "$string:reason_microphone"
       },
+      {"name":  'ohos.permission.PRIVACY_WINDOW',
+        "reason": "$string:reason_PRIVACY_WINDOW"
+      },
       {
         "name": "ohos.permission.CAMERA",
         "reason": "$string:permission_reason_camera",

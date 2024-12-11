@@ -52,7 +52,7 @@ import { QuestionShareDialog } from './views/Question/QuestionShareDialog'
         .onClick(() => this.questionOpt(1, this.item.likeFlag === 1 ? 0 : 1))
       MenuItem({ content: this.item.collectFlag === 1 ? '取消收藏' : '收藏' })
         .onClick(() => this.questionOpt(2, this.item.collectFlag === 1 ? 0 : 1))
-      MenuItem({ content: '点我反馈' })
+      // MenuItem({ content: '点我反馈' })
       MenuItem({ content: '试题分享' }).onClick(() => {
         this.codeDialog.open()
 

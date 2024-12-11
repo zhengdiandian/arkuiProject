@@ -20,6 +20,10 @@
     {
       "name": "reason_microphone",
       "value": "用于录音模块的录音"
+    },
+    {
+      "name": "reason_PRIVACY_WINDOW",
+      "value": "用于登录的的防止截屏"
     }
   ]
 }

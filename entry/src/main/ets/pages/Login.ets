@@ -5,7 +5,24 @@ import { User } from '../models'
 import { auth } from '../commons/utils/Auth'
 import { emitter } from '@kit.BasicServicesKit'
 import { LOGIN_EVENT } from '../constants'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
+class windowUtils {
+  static setWindowPrivacyModeInPage(context: common.UIAbilityContext, isFlag: boolean) {
+    window.getLastWindow(context).then((lastWindow) => {
+      lastWindow.setWindowPrivacyMode(isFlag, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to set the window to privacy mode. 1Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in setting the window to privacy mode.');
+      });
+    })
+  }
+}
 @Extend(TextInput)
 function customStyle(){
     .placeholderColor('#C3C3C5')
@@ -30,6 +47,13 @@ struct LoginPage {
   isAgree: boolean = false
   @State
   loading: boolean = false
+  onPageShow() {
+    windowUtils.setWindowPrivacyModeInPage(getContext(this) as common.UIAbilityContext, true);
+  }
+
+  onPageHide() {
+    windowUtils.setWindowPrivacyModeInPage(getContext(this) as common.UIAbilityContext, false);
+  }
 
   async login() {
     if (this.loading) {
